@@ -1,0 +1,31 @@
+-- Create a Store Database
+
+CREATE TABLE Target (id INTEGER PRIMARY KEY, name TEXT, price INTEGER, department TEXT, color TEXT, brand TEXT);
+
+INSERT INTO Target
+
+VALUES
+(1, 'shirt', 15, 'clothing', 'red', 'darc sport'),
+(2, 'pants', 20, 'clothing', 'blue', 'levis'),
+(3, "hat", 10, "clothing", 'black', 'darc sport'),
+(4, 'bra', 12, 'clothing', 'blue', 'darc sport'),
+(5, 'makeup', 8, 'beauty', 'n/a', 'kylie'),
+(6, "icecream", 5, 'grocery', 'n/a', "Ben and Jerry's"),
+(7, 'phone', 800, 'tech', 'black', 'Apple'),
+(8, "board games", 13, 'toys', 'n/a', 'Monopoly'),
+(9, 'pikachu', 25, 'toys', 'yellow', 'pokemon'),
+(10, 'trading cards', 16, 'toys', 'n/a', 'pokemon'),
+(11, 'pizza', 7, 'grocery', 'n/a', 'disernio'),
+(12, 'candy', 3, 'grocery', 'brown', "M&M's"),
+(13, "candy", 2, 'grocery', 'brown', 'Kitkat'),
+(14, 'candy', 1, 'grocery', 'brown', 'twix'),
+(15, 'candy', 7, 'grocery', 'brown', "snickers");
+
+--Display Database
+SELECT * FROM Target;
+
+--What is the sum of items in the toy section?
+SELECT SUM(price) FROM target WHERE department = 'toys';
+
+--Display the candy in database in order of price.
+SELECT * FROM target WHERE name = 'candy' ORDER BY price;
