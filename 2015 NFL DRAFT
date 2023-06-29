@@ -1,0 +1,132 @@
+CREATE TABLE picks( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, college TEXT, picked_by TEXT, position TEXT);
+
+INSERT INTO picks (name, college, picked_by, position)
+	
+VALUES
+("Jameis Winston","Florida State","Tampa Bay","QB"),
+("Marcus Mariota","Oregon","Tennessee","QB"),
+("Dante Fowler Jr.","Florida","Jacksonville","DE"),
+("Amari Cooper","Alabama","Oakland","WR"),
+("Brandon Scherff ","Iowa","Washington","OT"),
+("Leonard Williams","USC","NY Jets","DE"),
+("Kevin White","West Virginia","Chicago","WR"),
+("Vic Beasley","Clemson","Atlanta","OLB"),
+("Ereck Flowers","Miami(FL)","New York Giants","OT"),
+("Todd Gurley","Georgia","St. Louis","RB"),
+("Trae Waynes","Michigan St.","Minnesota","CB"),
+("Danny Shelton","Washington","Cleveland","DT"),
+("Andrus Peat ","Stanford","New Orleans","OT"),
+("DeVante Parker","Louisville","Miami","WR"),
+("Melvin Gordon","Wisconsin","San Diego","RB"),
+("Kevin Johnson","Wake Forest","Houston","CB"),
+("Arik Armstead","Oregon","San Francisco",  "DT"),
+("Marcus Peters","Washington","Kansas City","CB"),
+("Cameron Erving","Florida State","Cleveland","C"),
+("Nelson Agholor","USC","Philadelphia","WR"),
+("Cedric Ogbuehi ","Texas A&M","Cincinnati","OT"),
+("Bud Dupree","Kentucky","Pittsburgh","OLB"),
+("Shane Ray","Missouri","Denver","OLB"),
+("D.J. Humphries","Florida","Arizona","OT"),
+("Shaq Thompson","Washington","Carolina","OLB"),
+("Breshad Perriman","UCF","Baltimore","WR"),
+("Byron Jones","Connecticut","Dallas","CB"),
+("Laken Tomlinson","Duke","Detroit","OG"),
+("Phillip Dorsett ","Miami(FL)","Indianapolis","WR"),
+("Damarious Randall","Arizona St.","Green Bay","S"),
+("Stephon Anthony","Clemson","New Orleans","ILB"),
+("Malcom Brown","Texas","New England","DT"),
+("Landon Collins","Alabama","New York Giants","S"),
+("Donovan Smith","Penn State","Tampa Bay","OT"),
+("Mario Edwards Jr.","Florida State","Oakland","DE"),
+("TJ Yeldon","Alabama","Jacksonville","RB"),
+("Devin Smith ","Ohio St.","NY Jets","WR"),
+("Preston Smith","Mississippi St.","Washington","DE"),
+("Eddie Goldman","Florida State","Chicago","DT"),
+("Dorial Green-Beckham","Missouri","Tennessee","WR"),
+("Devin Funchess","Michigan","Carolina","WR"),
+("Jalen Collins","LSU","Atlanta","CB"),
+("Benardrick McKinney","Mississippi St.","Houston","ILB"),
+("Hau'Oli Kikaha","Washington","New Orleans","OLB"),
+("Eric Kendricks ","UCLA","Minnesota","ILB"),
+("Jaquiski Tartt","Samford","San Francisco","S"),
+("Eric Rowe","Utah","Philadelphia","CB"),
+("Denzel Perryman","Miami","San Diego","ILB"),
+("Mitch Morse","Missouri","Kansas City",  "OG"),
+("Ronald Darby","Florida State","Buffalo","CB"),
+("Nate Orchard","Utah","Cleveland","OLB"),
+("Jordan Phillips","Oklahoma","Miami","DT"),
+("Jake Fisher ","Oregon","Cincinnati","OT"),
+("Ameer Abdullah","Nebraska","Detroit","RB"),
+("Maxx Williams","Minnesota","Baltimore","TE"),
+("Senquez Golson","Mississippi","Pittsburgh","CB"),
+("Robert Havenstein","Wisconsin","St. Louis","OT"),
+("Markus Golden","Missouri","Arizona","DE"),
+("Ty Sambrailo","Colorado St.","Denver","OT"),
+("Randy Gregory","Nebraska","Dallas","OLB"),
+("Ali Marpet ","Hobart","Tampa Bay","OG"),
+("Quinten Rollins","Miami (OH)","Green Bay","CB"),
+("Frank Clark","Michigan","Seattle","DE"),
+("Jordan Richards","Stanford","New England","S"),
+("D'Joun Smith","Florida Atlantic","Indianapolis","CB"),
+("Jeremiah Poutasi","Utah","Tennessee","OG"),
+("A.J. Cann","South Carolina","Jacksonville","OG"),
+("Clive Walford","Miami(FL)","Oakland","TE"),
+("Tyler Lockett ","Kansas State","Seattle","WR"),
+("Jaelen Strong","Arizona St.","Houston","WR"),
+("Hroniss Grasu","Oregon","Chicago","C"),
+("Jamon Brown","Louisville","St. Louis","OT"),
+("Tevin Coleman","Indiana","Atlanta","RB"),
+("Owa Odighizuwa","UCLA","New York Giants","DE"),
+("Garrett Grayson","Colorado St.","New Orleans","QB"),
+("Chris Conley","Georgia","Kansas City","WR"),
+("Duke Johnson ","Miami(FL)","Cleveland","RB"),
+("P.J. Williams","Florida State","New Orleans","CB"),
+("Eli Harold","Virginia","San Francisco","OLB"),
+("Alex Carter","Stanford","Detroit","CB"),
+("John Miller","Louisville","Buffalo",  "OG"),
+("Lorenzo Mauldin","Louisville","NY Jets","OLB"),
+("Craig Mager","Texas State","San Diego","CB"),
+("Jordan Hicks","Texas","Philadelphia","ILB"),
+("Tyler Kroft ","Rutgers","Cincinnati","TE"),
+("David Johnson","Northern Iowa","Arizona","RB"),
+("Sammie Coates","Auburn","Pittsburgh","WR"),
+("Danielle Hunter","LSU","Minnesota","DE"),
+("Sean Mannion","Oregon State","St. Louis","QB"),
+("Carl Davis","Iowa","Baltimore","DT"),
+("Chaz Green","Florida","Dallas","OT"),
+("Jeff Heuerman","Ohio St.","Denver","TE"),
+("Henry Anderson ","Stanford","Indianapolis","DE"),
+("Ty Montgomery","Stanford","Green Bay","WR"),
+("Matt Jones","Florida","Washington","RB"),
+("Xavier Cooper","Washington State","Cleveland","DT"),
+("Geneo Grissom","Oklahoma","New England","DE"),
+("Steven Nelson","Oregon State","Kansas City","CB");
+
+-- View Full Table --
+SELECT * FROM picks;
+
+-- Which colleges had the most draft picks this year? --
+SELECT COUNT(*), college
+FROM picks
+GROUP BY college
+ORDER BY count(*) DESC;
+
+-- What round was each pick in? --
+SELECT name, position,
+CASE
+WHEN id <33 THEN "1st"
+WHEN id <65 THEN "2nd"
+WHEN id <97 THEN "3rd"
+ELSE "4th"
+END AS "round_selected"
+FROM picks;
+
+-- How many OT's were selected in the first round? --
+SELECT name, position, id
+FROM picks
+WHERE position = "OT" AND id <33;
+
+-- What were Houston's Draft choices this year? --
+SELECT name, college, position
+FROM picks
+WHERE picked_by = "Houston";
